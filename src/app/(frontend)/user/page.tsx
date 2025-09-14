@@ -2,10 +2,16 @@ import { UsersGrid } from "@/components/(app)/(users)/users-grid";
 import payload from "@/payload";
 
 export default async function UsersPage() {
-
   const { docs: Users } = await payload.find({
     collection: "users",
   });
+  if (!Users) {
+    return (
+      <main>
+        <p>No users found</p>
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen bg-black text-white p-10">
