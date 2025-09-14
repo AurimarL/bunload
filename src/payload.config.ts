@@ -1,4 +1,5 @@
 import { postgresAdapter } from "@payloadcms/db-postgres";
+import { resendAdapter } from "@payloadcms/email-resend";
 import { buildConfig } from "payload";
 import sharp from "sharp";
 import { Media } from "./payload/collections/Media";
@@ -24,4 +25,9 @@ export default buildConfig({
   }),
   sharp,
   plugins: [],
+  email: resendAdapter({
+    defaultFromAddress: "send@aurimarlopes.com",
+    defaultFromName: "Aurimar",
+    apiKey: process.env.RESEND_API_KEY || "",
+  }),
 });
