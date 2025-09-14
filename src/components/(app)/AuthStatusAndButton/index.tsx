@@ -1,16 +1,13 @@
 import { fileURLToPath } from "node:url";
-import config from "@payload-config";
 import { headers as getHeaders } from "next/headers";
 import Link from "next/link";
-import { getPayload } from "payload";
 
 import { Button, buttonVariants } from "@/components/ui/button";
+import payload from "@/payload";
 
 export default async function AuthStatusAndButton() {
   // 🔐 Auth check
   const headers = await getHeaders();
-  const payloadConfig = await config;
-  const payload = await getPayload({ config: payloadConfig });
   const { user } = await payload.auth({ headers });
 
   // 🛠️ Debug link (opens this file in VSCode)

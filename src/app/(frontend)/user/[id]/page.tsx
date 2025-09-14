@@ -1,6 +1,5 @@
-import config from "@payload-config";
 import { notFound } from "next/navigation";
-import { getPayload } from "payload";
+import payload from "@/payload";
 
 export default async function UserIdPage({
   params,
@@ -8,8 +7,6 @@ export default async function UserIdPage({
   params: Promise<{ id: string }>;
 }) {
   const id = (await params).id;
-  const payloadConfig = await config;
-  const payload = await getPayload({ config: payloadConfig });
 
   const user = await payload.findByID({
     collection: "users",

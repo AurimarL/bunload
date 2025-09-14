@@ -1,10 +1,7 @@
-import config from "@payload-config";
-import { getPayload } from "payload";
 import { UsersGrid } from "@/components/(app)/(users)/users-grid";
+import payload from "@/payload";
 
 export default async function UsersPage() {
-  const payloadConfig = await config;
-  const payload = await getPayload({ config: payloadConfig });
 
   const { docs: Users } = await payload.find({
     collection: "users",
