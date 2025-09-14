@@ -1,6 +1,8 @@
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { resendAdapter } from "@payloadcms/email-resend";
 import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob";
+import { en } from "@payloadcms/translations/languages/en";
+import { pt } from "@payloadcms/translations/languages/pt";
 import { buildConfig } from "payload";
 import sharp from "sharp";
 import { Media } from "./payload/collections/Media";
@@ -41,4 +43,8 @@ export default buildConfig({
     defaultFromName: "Aurimar",
     apiKey: process.env.RESEND_API_KEY || "",
   }),
+  i18n: {
+    fallbackLanguage: "pt",
+    supportedLanguages: { en, pt },
+  },
 });
