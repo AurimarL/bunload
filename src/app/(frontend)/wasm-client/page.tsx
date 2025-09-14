@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import init, { add, greet } from "../../../../wasm/pkg";
+import init, { add, greet } from "@/wasm";
 
 export default function WasmDemoPage() {
   const [sum, setSum] = useState<number | null>(null);
