@@ -21,7 +21,7 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI,
     },
     idType: "uuid",
-    push: true, // DO NOT USE ON PRODUCTION
+    push: false, // DO NOT USE ON PRODUCTION
   }),
   sharp,
   plugins: [],
