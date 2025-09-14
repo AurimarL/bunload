@@ -6,7 +6,11 @@ import payload from "@/payload";
 export async function POST() {
   try {
     const headers = await getHeaders();
-    await payload.auth({ headers });
+    const user = await payload.auth({ headers });
+
+    if (!user) {
+      return Response.json({ message: "Nao autenticado" }, { status: 500 });
+    }
 
     // TODO: Pass to lib or helper
     const html = await pretty(
