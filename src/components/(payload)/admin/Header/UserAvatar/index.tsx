@@ -20,7 +20,7 @@ const ProfilePicture: React.FC = async () => {
         objectFit: "cover",
       }}
       src={
-        (user?.photo as Media).url ||
+        (user?.photo as Media)?.url ||
         "https://www.gravatar.com/avatar/218644472ede33e83ae2002c4f4336d3?default=mp&r=g&s=50"
       }
       alt="yas"

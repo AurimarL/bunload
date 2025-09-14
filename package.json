@@ -10,7 +10,8 @@
     "lint": "biome check",
     "lint:fix": "biome lint --write",
     "format": "biome format --write",
-    "gt": "payload generate:types"
+    "gt": "payload generate:types",
+    "seed": "bun run src/payload/seeds/index.ts"
   },
   "dependencies": {
     "@faker-js/faker": "^10.0.0",
