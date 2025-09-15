@@ -1,25 +1,13 @@
+// payload/collections/Users.ts
 import type { CollectionConfig } from "payload";
-
-const RolesOptions = [
-  {
-    value: "admin",
-    label: "Admin",
-  },
-  {
-    value: "user",
-    label: "User",
-  },
-];
 
 export const Users: CollectionConfig = {
   slug: "users",
+  auth: true,
   admin: {
     useAsTitle: "email",
   },
-  auth: true,
   fields: [
-    // Email added by default
-    // Add more fields as needed
     {
       name: "photo",
       type: "upload",
@@ -27,11 +15,12 @@ export const Users: CollectionConfig = {
     },
     {
       name: "roles",
-      type: "select",
-      hasMany: true,
-      saveToJWT: true,
-      options: [...RolesOptions],
-      defaultValue: "user",
+      type: "relationship",
+      relationTo: "roles",
+      hasMany: true, // a user can have multiple roles
+      required: true,
     },
   ],
 };
+
+export default Users;

@@ -1,6 +1,7 @@
 import { fileURLToPath } from "node:url";
 import config from "@payload-config";
 import { getPayload } from "payload";
+import { seedRoles } from "./seedRoles";
 import { seedUsers } from "./seedUsers";
 
 export const seed = async (): Promise<void> => {
@@ -8,6 +9,7 @@ export const seed = async (): Promise<void> => {
 
   payload.logger.info("Seeding data...");
 
+  await seedRoles(payload);
   await seedUsers(payload);
 
   payload.logger.info("All seeding completed ✅");
