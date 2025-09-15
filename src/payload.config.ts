@@ -13,8 +13,8 @@ import { Media } from "./payload/collections/Media";
 import Roles from "./payload/collections/Roles";
 import { Users } from "./payload/collections/Users";
 
-// const isProd = process.env.NODE_ENV === "production";
-const isProd = true;
+const isProd = process.env.NODE_ENV === "production";
+// const isProd = true;
 
 export default buildConfig({
   editor: lexicalEditor(),
