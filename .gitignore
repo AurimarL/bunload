@@ -45,3 +45,5 @@ media
 # Added by cargo
 
 /target
+
+scripts/backups/*
