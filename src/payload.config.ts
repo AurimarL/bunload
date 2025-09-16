@@ -11,10 +11,13 @@ import { migrations } from "./migrations";
 // Collections
 import { Media } from "./payload/collections/Media";
 import Roles from "./payload/collections/Roles";
+import { Teams } from "./payload/collections/Teams";
 import { Users } from "./payload/collections/Users";
+import NavMain from "./payload/globals/nav-main";
 
-const isProd = process.env.NODE_ENV === "production";
+// const isProd = process.env.NODE_ENV === "production";
 // const isProd = true;
+const isProd = false;
 
 export default buildConfig({
   editor: lexicalEditor(),
@@ -23,7 +26,8 @@ export default buildConfig({
     importMap: {},
     avatar: { Component: "@/components/(payload)/admin/Header/UserAvatar" },
   },
-  collections: [Users, Media, Roles],
+  collections: [Users, Media, Roles, Teams],
+  globals: [NavMain],
   secret: process.env.PAYLOAD_SECRET || "PAYLOAD_SECRET",
   typescript: {
     outputFile: "./src/payload-types.ts",

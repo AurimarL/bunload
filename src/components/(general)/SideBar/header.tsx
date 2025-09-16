@@ -21,7 +21,7 @@ export default function Header() {
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem className="hidden md:block">
-              <BreadcrumbLink href="#">
+              <BreadcrumbLink href="/">
                 Bunload
               </BreadcrumbLink>
             </BreadcrumbItem>

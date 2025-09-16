@@ -13,11 +13,7 @@ export const Users: CollectionConfig = {
     useAsTitle: "email",
   },
   fields: [
-    {
-      name: "photo",
-      type: "upload",
-      relationTo: "media",
-    },
+    //
     {
       name: "roles",
       type: "relationship",
@@ -25,6 +21,18 @@ export const Users: CollectionConfig = {
       hasMany: true, // a user can have multiple roles
       required: true,
       defaultValue: "",
+    },
+    //
+    {
+      name: "photo",
+      type: "upload",
+      relationTo: "media",
+    },
+    {
+      name: "team",
+      type: "relationship",
+      relationTo: "teams",
+      hasMany:true
     },
   ],
 };

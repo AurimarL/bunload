@@ -70,6 +70,7 @@ export interface Config {
     users: User;
     media: Media;
     roles: Role;
+    teams: Team;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -79,6 +80,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     roles: RolesSelect<false> | RolesSelect<true>;
+    teams: TeamsSelect<false> | TeamsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -86,8 +88,12 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    'nav-main': NavMain;
+  };
+  globalsSelect: {
+    'nav-main': NavMainSelect<false> | NavMainSelect<true>;
+  };
   locale: null;
   user: User & {
     collection: 'users';
@@ -121,8 +127,9 @@ export interface UserAuthOperations {
  */
 export interface User {
   id: string;
-  photo?: (string | null) | Media;
   roles: (string | Role)[];
+  photo?: (string | null) | Media;
+  team?: (string | Team)[] | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -145,6 +152,23 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "roles".
+ */
+export interface Role {
+  id: string;
+  name: string;
+  description?: string | null;
+  permissions?:
+    | {
+        permission: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
  */
 export interface Media {
@@ -164,18 +188,13 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "roles".
+ * via the `definition` "teams".
  */
-export interface Role {
+export interface Team {
   id: string;
-  name: string;
-  description?: string | null;
-  permissions?:
-    | {
-        permission: string;
-        id?: string | null;
-      }[]
-    | null;
+  name?: string | null;
+  logo?: (string | null) | Media;
+  plan?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -197,6 +216,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'roles';
         value: string | Role;
+      } | null)
+    | ({
+        relationTo: 'teams';
+        value: string | Team;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -245,8 +268,9 @@ export interface PayloadMigration {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
-  photo?: T;
   roles?: T;
+  photo?: T;
+  team?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -302,6 +326,17 @@ export interface RolesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "teams_select".
+ */
+export interface TeamsSelect<T extends boolean = true> {
+  name?: T;
+  logo?: T;
+  plan?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents_select".
  */
 export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
@@ -331,6 +366,82 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nav-main".
+ */
+export interface NavMain {
+  id: string;
+  links?:
+    | {
+        name: string;
+        /**
+         * Use a full URL or a relative path (e.g., /docs/intro)
+         */
+        url: string;
+        /**
+         * Enter the name of the Lucide icon (e.g., SquareTerminal, Bot)
+         */
+        icon: string;
+        items?:
+          | {
+              name: string;
+              url: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  projects?:
+    | {
+        name: string;
+        /**
+         * Use a full URL or a relative path (e.g., /projects/intro)
+         */
+        url: string;
+        /**
+         * Enter the name of the Lucide icon (e.g., SquareTerminal, Bot)
+         */
+        icon: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nav-main_select".
+ */
+export interface NavMainSelect<T extends boolean = true> {
+  links?:
+    | T
+    | {
+        name?: T;
+        url?: T;
+        icon?: T;
+        items?:
+          | T
+          | {
+              name?: T;
+              url?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  projects?:
+    | T
+    | {
+        name?: T;
+        url?: T;
+        icon?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
