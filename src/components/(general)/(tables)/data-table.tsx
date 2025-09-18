@@ -25,12 +25,14 @@ import {
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+  usersData: TData[];
+  children: React.ReactNode;
 }
 
 export function DataTable<TData, TValue>({
   columns,
-  data,
+  usersData,
+  children,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([
     {
@@ -44,7 +46,7 @@ export function DataTable<TData, TValue>({
   const [rowSelection, setRowSelection] = React.useState({});
 
   const table = useReactTable({
-    data,
+    data: usersData,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -63,7 +65,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      <div className="flex items-center py-4">
+      <div className="flex items-center py-4 justify-between">
         <Input
           placeholder="Filter emails..."
           value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
@@ -72,6 +74,7 @@ export function DataTable<TData, TValue>({
           }}
           className="max-w-sm"
         />
+        <div className="pr-16">{children}</div>
       </div>
       <div className="overflow-hidden rounded-md border z-50">
         <Table>
