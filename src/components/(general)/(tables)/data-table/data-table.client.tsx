@@ -29,7 +29,7 @@ interface DataTableProps<TData, TValue> {
   children: React.ReactNode;
 }
 
-export function DataTable<TData, TValue>({
+export function DataTableClient<TData, TValue>({
   columns,
   usersData,
   children,

@@ -1,9 +1,9 @@
 "use client";
 
-import { NavMain } from "@/components/(general)/SideBar/nav-main";
-import { NavProjects } from "@/components/(general)/SideBar/nav-projects";
-import { NavUser } from "@/components/(general)/SideBar/nav-user";
-import { TeamSwitcher } from "@/components/(general)/SideBar/team-switcher";
+import { NavMain } from "@/components/sidebar/nav-main";
+import { NavProjects } from "@/components/sidebar/nav-projects";
+import { NavUser } from "@/components/sidebar/nav-user";
+import { TeamSwitcher } from "@/components/sidebar/team-switcher";
 
 import {
   Sidebar,

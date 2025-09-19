@@ -7,7 +7,6 @@ import { CreateUserModalClient } from "./create-user-modal.client";
 
 async function handleCreateUser(formData: IformSchema) {
   "use server";
-
   try {
     await payload.create({
       collection: "users",
@@ -26,8 +25,6 @@ async function handleCreateUser(formData: IformSchema) {
 }
 
 export default async function CreateUserModal() {
-  console.log("Ola from System");
-
   const { docs: teamData } = await payload.find({
     collection: "teams",
   });

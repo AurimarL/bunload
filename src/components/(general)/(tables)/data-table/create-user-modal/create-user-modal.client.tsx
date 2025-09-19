@@ -35,7 +35,7 @@ export function CreateUserModalClient({
         <CreateUserForm
           data={data}
           handler={handler}
-          onSuccess={() => setOpen(false)} // ✅ fecha modal
+          onSuccess={() => setOpen(false)}
         />
       </DialogContent>
     </Dialog>

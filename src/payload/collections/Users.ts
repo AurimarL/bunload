@@ -1,6 +1,13 @@
 // payload/collections/Users.ts
-import type { CollectionConfig } from "payload";
 
+import type { Access, CollectionConfig } from "payload";
+import type { User } from "@/payload-types";
+
+const isAdmin: Access<User> = ({ req: { user } }) => {
+  console.log("user aqui");
+  console.log(Boolean(user?.roles?.includes("admin")));
+  return Boolean(user?.roles?.includes("admin"));
+};
 export const Users: CollectionConfig = {
   slug: "users",
   auth: {
@@ -11,6 +18,9 @@ export const Users: CollectionConfig = {
   },
   admin: {
     useAsTitle: "email",
+  },
+  access: {
+    delete: isAdmin,
   },
   fields: [
     //
@@ -32,7 +42,7 @@ export const Users: CollectionConfig = {
       name: "team",
       type: "relationship",
       relationTo: "teams",
-      hasMany:true
+      hasMany: true,
     },
   ],
 };
