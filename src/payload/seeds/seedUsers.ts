@@ -17,16 +17,21 @@ export const seedUsers = async (payload: Payload): Promise<void> => {
     return role.id;
   };
 
-  const usersToSeed: Pick<User, "email" | "password" | "roles">[] = [
+  const usersToSeed: Pick<
+    User,
+    "email" | "password" | "roles" | "_verified"
+  >[] = [
     {
       email: "qwerty@example.com",
       roles: [getRoleId("viewer")],
       password: "qwerty123",
+      _verified: true,
     },
     {
       email: "admin@example.com",
       roles: [getRoleId("admin")],
       password: "admin123",
+      _verified: true,
     },
   ];
 

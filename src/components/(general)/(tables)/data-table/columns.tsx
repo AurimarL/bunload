@@ -69,9 +69,9 @@ const actionCollumn: ColumnDef<User> = {
 
     function handleDeleteInBulkById() {
       startTransition(async () => {
-        const error = await HandleDeleteInBulkById(ids);
-        if (error) {
-          toast(error);
+        const response = await HandleDeleteInBulkById(ids);
+        if (!response.success) {
+          toast(response.error);
         } else {
           toast("Usuários deletados com sucesso!");
         }
@@ -101,9 +101,9 @@ const actionCollumn: ColumnDef<User> = {
 
     function handleDeleteUserById() {
       startTransition(async () => {
-        const error = await HandleDeleteUserById(user.id);
-        if (error) {
-          toast(error);
+        const response = await HandleDeleteUserById(user.id);
+        if (!response.success) {
+          toast(response.error);
         } else {
           toast("Usuário deletados com sucesso!");
         }

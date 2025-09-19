@@ -1,12 +1,12 @@
 // payload/collections/Users.ts
 
 import type { Access, CollectionConfig } from "payload";
-import type { User } from "@/payload-types";
+import type { Role, User } from "@/payload-types";
 
 const isAdmin: Access<User> = ({ req: { user } }) => {
-  console.log("user aqui");
-  console.log(Boolean(user?.roles?.includes("admin")));
-  return Boolean(user?.roles?.includes("admin"));
+
+// TODO: 
+  return Boolean(user?.roles?.some((role) => (role as Role).name === "admin"));
 };
 export const Users: CollectionConfig = {
   slug: "users",
