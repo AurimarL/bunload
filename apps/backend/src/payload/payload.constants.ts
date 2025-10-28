@@ -1,0 +1,1 @@
+export const PAYLOAD_INSTANCE = 'PAYLOAD_INSTANCE';

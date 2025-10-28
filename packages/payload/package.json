@@ -1,0 +1,26 @@
+{
+  "name": "@repo/payload",
+  "module": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "generate": "bun payload generate:types && bun payload generate:db-schema"
+    
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "private": "true",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@payloadcms/db-postgres": "^3.61.1",
+    "@payloadcms/next": "^3.61.1",
+    "@payloadcms/richtext-lexical": "^3.61.1",
+    "graphql": "16.8.1",
+    "payload": "^3.61.1"
+  }
+}

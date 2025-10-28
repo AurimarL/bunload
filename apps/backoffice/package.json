@@ -1,0 +1,35 @@
+{
+  "name": "backoffice",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "biome check",
+    "format": "biome format --write"
+  },
+  "dependencies": {
+    "@payloadcms/db-postgres": "^3.61.1",
+    "@payloadcms/next": "^3.61.1",
+    "@payloadcms/richtext-lexical": "^3.61.1",
+    "@repo/payload": "workspace:*",
+    "graphql": "16.8.1",
+    "next": "15.4.4",
+    "payload": "^3.61.1",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.2.0",
+    "@tailwindcss/postcss": "^4",
+    "@types/bun": "latest",
+    "@types/node": "^20",
+    "babel-plugin-react-compiler": "1.0.0",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "@types/react": "19.1.0",
+    "@types/react-dom": "19.1.0"
+  }
+}
