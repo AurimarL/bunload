@@ -5,17 +5,19 @@ import { PAYLOAD_INSTANCE } from "./payload.constants";
 
 @Global()
 @Module({})
-// biome-ignore lint/complexity/noStaticOnlyClass: <explanation>
 export class PayloadModule {
-	static forRoot(): DynamicModule {
+	static forRootAsync(): DynamicModule {
 		const payloadProvider = {
 			provide: PAYLOAD_INSTANCE,
 			useFactory: async (): Promise<Payload> => {
-				const instance = await payload.init({
-					config: buildConfig,
-				});
-				return instance;
-			},
+				try {
+					const instance = await payload.init({ config: buildConfig });
+					return instance;
+				} catch (err) {
+					console.error("Failed to initialize Payload:", err);
+					throw err;
+				}
+			}
 		};
 
 		return {

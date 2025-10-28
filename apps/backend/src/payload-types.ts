@@ -69,8 +69,6 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
-    money: Money;
-    transactions: Transaction;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -79,8 +77,6 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    money: MoneySelect<false> | MoneySelect<true>;
-    transactions: TransactionsSelect<false> | TransactionsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -162,30 +158,6 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "money".
- */
-export interface Money {
-  id: string;
-  code: string;
-  type?: ('50' | '100' | '200' | '500' | '1000' | '2000' | '5000') | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "transactions".
- */
-export interface Transaction {
-  id: string;
-  from: string | User;
-  to: string | User;
-  monies: (string | Money)[];
-  status: 'STARTED' | 'FAILED' | 'COMPLETED';
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -198,14 +170,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: string | Media;
-      } | null)
-    | ({
-        relationTo: 'money';
-        value: string | Money;
-      } | null)
-    | ({
-        relationTo: 'transactions';
-        value: string | Transaction;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -288,28 +252,6 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "money_select".
- */
-export interface MoneySelect<T extends boolean = true> {
-  code?: T;
-  type?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "transactions_select".
- */
-export interface TransactionsSelect<T extends boolean = true> {
-  from?: T;
-  to?: T;
-  monies?: T;
-  status?: T;
-  updatedAt?: T;
-  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
