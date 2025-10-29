@@ -69,8 +69,7 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
-    money: Money;
-    transactions: Transaction;
+    todo: Todo;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -79,8 +78,7 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    money: MoneySelect<false> | MoneySelect<true>;
-    transactions: TransactionsSelect<false> | TransactionsSelect<true>;
+    todo: TodoSelect<false> | TodoSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -162,25 +160,14 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "money".
+ * via the `definition` "todo".
  */
-export interface Money {
+export interface Todo {
   id: string;
-  code: string;
-  type?: ('50' | '100' | '200' | '500' | '1000' | '2000' | '5000') | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "transactions".
- */
-export interface Transaction {
-  id: string;
-  from: string | User;
-  to: string | User;
-  monies: (string | Money)[];
-  status: 'STARTED' | 'FAILED' | 'COMPLETED';
+  title: string;
+  description?: string | null;
+  status: 'PENDING' | 'STARTED' | 'DONE';
+  attachment?: (string | Media)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -200,12 +187,8 @@ export interface PayloadLockedDocument {
         value: string | Media;
       } | null)
     | ({
-        relationTo: 'money';
-        value: string | Money;
-      } | null)
-    | ({
-        relationTo: 'transactions';
-        value: string | Transaction;
+        relationTo: 'todo';
+        value: string | Todo;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -291,23 +274,13 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "money_select".
+ * via the `definition` "todo_select".
  */
-export interface MoneySelect<T extends boolean = true> {
-  code?: T;
-  type?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "transactions_select".
- */
-export interface TransactionsSelect<T extends boolean = true> {
-  from?: T;
-  to?: T;
-  monies?: T;
+export interface TodoSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
   status?: T;
+  attachment?: T;
   updatedAt?: T;
   createdAt?: T;
 }

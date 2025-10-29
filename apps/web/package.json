@@ -11,6 +11,7 @@
     "format": "biome format --write"
   },
   "dependencies": {
+    "@faker-js/faker": "^10.1.0",
     "@payloadcms/db-postgres": "^3.61.1",
     "@payloadcms/next": "^3.61.1",
     "@payloadcms/richtext-lexical": "^3.61.1",

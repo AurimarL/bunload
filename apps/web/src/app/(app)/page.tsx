@@ -6,11 +6,11 @@ import { fileURLToPath } from 'url'
 
 import config from '@/payload.config'
 import Image from "next/image";
+import usePayload from '@/lib/usePayload'
 
 export default async function Home() {
   const headers = await getHeaders()
-  const payloadConfig = await config
-  const payload = await getPayload({ config: payloadConfig })
+  const payload = await usePayload()
   const { user } = await payload.auth({ headers })
 
   const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`

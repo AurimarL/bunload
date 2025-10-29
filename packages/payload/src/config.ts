@@ -5,6 +5,7 @@ import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { buildConfig } from "payload";
 import { Media } from "./collections/Media";
 import { Users } from "./collections/Users";
+import { Todos } from "./collections/Todo";
 
 // const dirname = import.meta.url
 
@@ -16,7 +17,7 @@ export const config = (secret: string, dbUri: string) =>
 				// baseDir: dirname,
 			},
 		},
-		collections: [Users, Media],
+		collections: [Users, Media, Todos],
 		editor: lexicalEditor(),
 		secret: secret,
 		typescript: {
