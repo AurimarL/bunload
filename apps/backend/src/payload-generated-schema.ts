@@ -83,7 +83,7 @@ export const users = pgTable(
     }),
     salt: varchar("salt"),
     hash: varchar("hash"),
-    loginAttempts: numeric("login_attempts", { mode: "number" }).default("0"),
+    loginAttempts: numeric("login_attempts", { mode: "number" }).default(0),
     lockUntil: timestamp("lock_until", {
       mode: "string",
       withTimezone: true,

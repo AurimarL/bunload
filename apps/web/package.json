@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start -p 3002",
     "lint": "biome check",
-    "format": "biome format --write"
+    "format": "biome format --write",
+    "generate": "bun payload generate:types && bun payload generate:db-schema"
   },
   "dependencies": {
     "@faker-js/faker": "^10.1.0",

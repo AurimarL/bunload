@@ -8,7 +8,8 @@
   "scripts": {
     "start": "bun run dist/main.js",
     "dev": "bun run --hot src/main.ts",
-    "build": "bun run build.ts"
+    "build": "bun run build.ts",
+    "generate": "bun payload generate:types && bun payload generate:db-schema"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
